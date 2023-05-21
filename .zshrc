@@ -1,9 +1,29 @@
-alias c="code"
+eval "$(fnm env --use-on-cd)"
 
-# Kill Port
+export PNPM_HOME=$HOME/Library/pnpm
+export PATH="$PNPM_HOME:$PATH"
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export GOPATH=$HOME/Library/go
+export PATH="$PATH:$GOPATH/bin"
+
+alias c="code"
+alias server="ssh -i ~/.ssh/main sunney@vps.sunney.dev"
+
+
 function kp() {
 	kill -9 $(lsof -t -i:$1)
 }
+
+# bun completions
+[ -s "/Users/sunney/.bun/_bun" ] && source "/Users/sunney/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias reload='source ~/.zshrc'
 
@@ -13,7 +33,6 @@ function work {
     ls
 }
 
-# Quick Commit
 function qc {
     git add .
     if [ "$1" != "" ] # or better, if [ -n "$1" ]
@@ -25,7 +44,6 @@ function qc {
     git push
 }
 
-# Quick Commit to Vercel
 function qcv {
 	qc $1
 	vercel --prod
@@ -36,8 +54,8 @@ function myip() {
     echo "Remote IP: $(curl -s https://api.ipify.org)"
 }
 
-# Reload Launch Agent
 function rla() {
+
   local agent_name="$1"
 
   if [[ -z "$agent_name" ]]; then
