@@ -11,8 +11,15 @@ export GOPATH=$HOME/Library/go
 export PATH="$PATH:$GOPATH/bin"
 
 alias c="code"
+alias p="pnpm"
+alias ppnm="pnpm"
+alias pnp="pnpm"
+alias pmnp="pnpm"
 alias server="ssh -i ~/.ssh/main sunney@vps.sunney.dev"
-
+alias srv="server"
+alias ctc="citycom"
+alias ws="work"
+alias wk="work"
 
 function kp() {
 	kill -9 $(lsof -t -i:$1)
